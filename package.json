@@ -1,0 +1,33 @@
+{
+  "name": "blockly-drones",
+  "version": "1.0.0",
+  "description": "Fly drones with blocks!",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/retrohacker/blockly-drones.git"
+  },
+  "keywords": [
+    "parrot",
+    "ar",
+    "drone",
+    "blockly",
+    "learning",
+    "drones",
+    "education"
+  ],
+  "author": "William Blankenship <npm@blankenship.io>",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/retrohacker/blockly-drones/issues"
+  },
+  "homepage": "https://github.com/retrohacker/blockly-drones#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^7.1.1"
+  }
+}
