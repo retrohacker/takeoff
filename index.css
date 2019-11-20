@@ -1,0 +1,97 @@
+@font-face {
+  font-family: Bangers;
+  src: url(./fonts/Bangers/Bangers-Regular.ttf);
+}
+@font-face {
+  font-family: SourceCodeProLight;
+  src: url(./fonts/SourceCodePro/SourceCodePro-ExtraLight.ttf);
+}
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+#toolbox {
+  display: none;
+}
+#ui {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+#toolbar {
+  display: flex;
+  width: 100%;
+  background-color: gray;
+  font-size: 1.5em;
+  font-family: Bangers;
+  background-color: #272822;
+  color: #E5DFDF;
+}
+#toolbar-content {
+  padding: .5em 1em;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+#right {
+  display: flex;
+}
+#left {
+  display: flex;
+}
+#button-run {
+  padding: .1em 1em .1em .5em;
+  background-color: #008000;
+  border-radius: .25em;
+  user-select: none;
+}
+#button-run:active {
+  background-color: #009000;
+}
+#button-stop {
+  padding: .1em 1em .1em .5em;
+  background-color: #800000;
+  border-radius: .25em;
+  user-select: none;
+  margin-left: .5em;
+}
+#button-stop:active {
+  background-color: #900000;
+}
+#workspace {
+  flex: 1;
+  display: flex;
+}
+#blocklySpace {
+  height: 100%;
+  width: 50%;
+}
+#blocklyUI {
+  position: absolute;
+}
+#editor {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+#aceUI {
+  height: 50%;
+  width: 100%;
+  margin: 0;
+}
+#terminal {
+  height: 50%;
+  width: 100%;
+  margin: 0;
+  background-color: #272822;
+  color: #E5DFDF;
+  font-family: SourceCodeProLight;
+  overflow-y: scroll;
+}
+#output {
+  padding: 1em;
+}

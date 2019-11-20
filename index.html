@@ -1,87 +1,57 @@
 <html>
   <head>
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
     <script src="./blockly/blockly_compressed.js"></script>
     <script src="./blockly/blocks_compressed.js"></script>
     <script src="./blockly/javascript_compressed.js"></script>
     <script src="./blockly/msg/js/en.js"></script>
     <script src="./ace/src-min-noconflict/ace.js"></script>
+    <link href="./fontawesome/css/all.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./normalize/normalize.css">
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        width: 100%;
-      }
-      #toolbox {
-        display: none;
-      }
-      #ui {
-        display: flex;
-      }
-      #blocklySpace {
-        height: 100%;
-        width: 50%;
-        display: inline-block;
-      }
-      #blocklyUI {
-        position: absolute;
-        display: inline-block;
-      }
-      #aceUI {
-        height:100%;
-        width: 50%;
-        display: inline-block;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="./index.css">
   </head>
   <body>
     <xml id="toolbox">
-      <block type="controls_if"></block>
+      <block type="takeoff"></block>
+      <block type="land"></block>
+      <block type="wait"></block>
+      <block type="print"></block>
     </xml>
 
-    <div id="ui"></div><div id="blocklySpace"></div><div id="blocklyUI"></div><pre id="aceUI"></pre>
-
+    <div id="ui">
+      <div id="toolbar">
+        <div id="toolbar-content">
+          <div id="left">
+            <i class="fas fa-paper-plane"></i>
+            Takeoff!
+          </div>
+          <div id="right">
+            <div id="button-run" onclick="window.runNode()">
+              <i class="fa fa-caret-up fa-rotate-90"></i>
+              Run
+            </div>
+            <div id="button-stop" onclick="window.killNode()">
+              <i class="fa fa-stop"></i>
+              Stop
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="workspace"><!--No Space!
+     --><div id="blocklySpace"></div><!--No Space!
+     --><div id="editor">
+          <pre id="aceUI"></pre><!--No Space!
+       --><div id="terminal">
+            <pre id="output">~</pre>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div id="blocklyUI"></div>
+    <script src="./editor.js"></script>
+    <script src="./blocks.js"></script>
+    <script src="./blockui.js"></script>
+    <script src="./run.js"></script>
     <script>
-      var editor = ace.edit("aceUI");
-      editor.setTheme("ace/theme/twilight");
-      editor.session.setMode("ace/mode/javascript");
-      editor.setReadOnly(true);
-
-      var blocklySpace = document.getElementById('blocklySpace');
-      var blocklyUI = document.getElementById('blocklyUI');
-      var workspace = Blockly.inject(blocklyUI,{
-        toolbox: document.getElementById('toolbox'),
-        zoom: {
-          controls: true,
-          wheel: true
-        }
-      });
-      var onresize = function(e) {
-        // Compute the absolute coordinates and dimensions of blocklySpace.
-        var element = blocklySpace;
-        var x = 0;
-        var y = 0;
-        do {
-          x += element.offsetLeft;
-          y += element.offsetTop;
-          element = element.offsetParent;
-        } while (element);
-        // Position blocklyUI over blocklySpace.
-        blocklyUI.style.left = x + 'px';
-        blocklyUI.style.top = y + 'px';
-        blocklyUI.style.width = blocklySpace.offsetWidth + 'px';
-        blocklyUI.style.height = blocklySpace.offsetHeight + 'px';
-        Blockly.svgResize(workspace);
-      };
-      window.addEventListener('resize', onresize, false);
-      onresize();
-      Blockly.svgResize(workspace);
-      function updateCode() {
-        editor.setValue(Blockly.JavaScript.workspaceToCode(workspace));
-      }
-      workspace.addChangeListener(updateCode);
     </script>
   </body>
 </html>

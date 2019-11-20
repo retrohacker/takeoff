@@ -26,7 +26,11 @@
     "url": "https://github.com/retrohacker/blockly-drones/issues"
   },
   "homepage": "https://github.com/retrohacker/blockly-drones#readme",
-  "dependencies": {},
+  "dependencies": {
+    "ar-drone": "^0.3.3",
+    "async": "^3.1.0",
+    "tmp": "^0.1.0"
+  },
   "devDependencies": {
     "electron": "^7.1.1"
   }
