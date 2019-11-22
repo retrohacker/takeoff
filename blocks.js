@@ -1,8 +1,12 @@
+function color() {
+  return Math.floor(Math.random() * (360 + 1));
+}
+
 Blockly.Blocks["takeoff"] = {
   init: function() {
     this.jsonInit({
       "message0": "takeoff",
-      "colour": 160,
+      "colour": color(),
       "tooltip": "Cause the drone to leave the ground.",
       "previousStatement": null,
       "nextStatement": null
@@ -18,7 +22,7 @@ Blockly.Blocks["land"] = {
   init: function() {
     this.jsonInit({
       "message0": "land",
-      "colour": 160,
+      "colour": color(),
       "tooltip": "Cause the drone to return to the ground.",
       "previousStatement": null,
       "nextStatement": null
@@ -30,11 +34,107 @@ Blockly.JavaScript["land"] = function(block) {
   return `(cb) => drone.land(cb),\n`;
 }
 
+Blockly.Blocks["front"] = {
+  init: function() {
+    this.jsonInit({
+      "message0": `forward at %1 percent speed`,
+      "args0": [
+        {
+          "type": "field_number",
+          "name": "SPEED",
+          "variable": "SPEED"
+        }
+      ],
+      "colour": color(),
+      "tooltip": `Move the drone forward at 0-100% speed.`,
+      "previousStatement": null,
+      "nextStatement": null
+    })
+  }
+}
+
+Blockly.JavaScript["front"] = function(block) {
+  const speed = block.getFieldValue('SPEED');
+  return `(cb) => { drone.front(${speed} / 100); cb(); },\n`
+}
+
+Blockly.Blocks["back"] = {
+  init: function() {
+    this.jsonInit({
+      "message0": `backward at %1 percent speed`,
+      "args0": [
+        {
+          "type": "field_number",
+          "name": "SPEED",
+          "variable": "SPEED"
+        }
+      ],
+      "colour": color(),
+      "tooltip": `Move the drone backward at 0-100% speed.`,
+      "previousStatement": null,
+      "nextStatement": null
+    })
+  }
+}
+
+Blockly.JavaScript["back"] = function(block) {
+  const speed = block.getFieldValue('SPEED');
+  return `(cb) => { drone.back(${speed} / 100); cb(); },\n`
+}
+
+Blockly.Blocks["left"] = {
+  init: function() {
+    this.jsonInit({
+      "message0": `left at %1 percent speed`,
+      "args0": [
+        {
+          "type": "field_number",
+          "name": "SPEED",
+          "variable": "SPEED"
+        }
+      ],
+      "colour": color(),
+      "tooltip": `Move the drone left at 0-100% speed.`,
+      "previousStatement": null,
+      "nextStatement": null
+    })
+  }
+}
+
+Blockly.JavaScript["left"] = function(block) {
+  const speed = block.getFieldValue('SPEED');
+  return `(cb) => { drone.left(${speed} / 100); cb(); },\n`
+}
+
+Blockly.Blocks["right"] = {
+  init: function() {
+    this.jsonInit({
+      "message0": `right at %1 percent speed`,
+      "args0": [
+        {
+          "type": "field_number",
+          "name": "SPEED",
+          "variable": "SPEED"
+        }
+      ],
+      "colour": color(),
+      "tooltip": `Move the drone right at 0-100% speed.`,
+      "previousStatement": null,
+      "nextStatement": null
+    })
+  }
+}
+
+Blockly.JavaScript["right"] = function(block) {
+  const speed = block.getFieldValue('SPEED');
+  return `(cb) => { drone.right(${speed} / 100); cb(); },\n`
+}
+
 Blockly.Blocks["wait"] = {
   init: function() {
     this.jsonInit({
       "message0": "wait %1 seconds",
-      "colour": 160,
+      "colour": color(),
       "tooltip": "Wait N seconds before calling the next statement.",
       "args0": [
         {
@@ -51,14 +151,14 @@ Blockly.Blocks["wait"] = {
 
 Blockly.JavaScript["wait"] = function(block) {
   const time = block.getFieldValue('DURATION');
-  return `(cb) => setTimeout(${time} * 1000,cb),\n`;
+  return `(cb) => setTimeout(cb, ${time} * 1000),\n`;
 }
 
 Blockly.Blocks["print"] = {
   init: function() {
     this.jsonInit({
       "message0": "print %1",
-      "colour": 160,
+      "colour": color(),
       "tooltip": "Write message out to terminal.",
       "args0": [
         {

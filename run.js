@@ -45,7 +45,6 @@ window.runNode = function runNode() {
     if(err) return handleError(err);
     fs.writeFile(file, code, err => {
       if(err) return handleError(err);
-      console.log(path.join(__dirname, 'node_modules'));
       child = spawn('node', [ file ], { env: {
         ...process.env,
         NODE_PATH: path.join(__dirname, 'node_modules')
